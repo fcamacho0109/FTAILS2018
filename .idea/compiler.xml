@@ -19,8 +19,8 @@
         <module name="FlockTails" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="FlockTails" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="FlockTails" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
