@@ -25,7 +25,7 @@
                   </Group>
                   <Group>
                      <children>
-                        <TextField id="loginUser" fx:id="userLoginText" />
+                        <TextField id="loginUser" fx:id="userLoginText" promptText="Usuario de 8 caracteres" />
                         <PasswordField id="loginPass" fx:id="userLoginPass" layoutY="56.0" prefHeight="32.0" prefWidth="210.0" />
                      </children>
                      <HBox.margin>
