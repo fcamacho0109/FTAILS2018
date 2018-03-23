@@ -31,7 +31,6 @@ public class Controller implements Initializable {
         pass = userLoginPass.getText().toString();
 
         if (user.length()<=8 && pass.length()<=8) {
-            //System.out.println("user y pass con menos de 8 caracteres");
             userLoginText.setText("");
             userLoginPass.setText("");
             userLoginText.setPromptText("Minimo 8 caracteres");
