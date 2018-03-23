@@ -1,8 +1,13 @@
 package module;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +24,8 @@ public class Controller implements Initializable {
     @FXML
     Label loginLabel;
     @FXML
+    Label label_bienvenido;
+    @FXML
     Label labelUsuario;
     @FXML
     Label labelContrasena;
@@ -31,7 +38,6 @@ public class Controller implements Initializable {
         pass = userLoginPass.getText().toString();
 
         if (user.length()<=8 && pass.length()<=8) {
-            //System.out.println("user y pass con menos de 8 caracteres");
             userLoginText.setText("");
             userLoginPass.setText("");
             userLoginText.setPromptText("Minimo 8 caracteres");
@@ -57,5 +63,22 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         userLoginText.setPromptText("Minimo 8 caracteres");
         userLoginPass.setPromptText("Minimo 8 caracteres");
+    }
+
+    public void temporalLogin(){ //METODO TEMPORAL PARA BRINCAR EL LOGIN
+
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/res_toolbar/GeneralToolbar.fxml"));
+            AnchorPane root1 = (AnchorPane) fxmlLoader.load();
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Hello World");
+            primaryStage.setScene(new Scene(root1));
+            primaryStage.show();
+            Stage stage2 = (Stage) label_bienvenido.getScene().getWindow();
+            stage2.close();
+        }catch(Exception e){
+
+        }
     }
 }

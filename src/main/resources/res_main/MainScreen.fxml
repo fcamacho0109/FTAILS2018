@@ -51,7 +51,7 @@
             </HBox>
             <VBox alignment="BOTTOM_LEFT" layoutX="14.0" layoutY="494.0" prefHeight="27.0" prefWidth="148.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="254.0">
                <children>
-                  <Label fx:id="labelRegion" prefHeight="19.0" prefWidth="119.0" text="Bienvenido ..." />
+                  <Label fx:id="label_bienvenido" onMouseClicked="#temporalLogin" prefHeight="19.0" prefWidth="119.0" text="Bienvenido ..." />
                </children>
             </VBox>
             <Label fx:id="loginLabel" layoutX="64.0" layoutY="77.0" prefHeight="51.0" prefWidth="307.0" styleClass="label-header" stylesheets="@css/dark_login.css" text="Iniciar Sesión" />
