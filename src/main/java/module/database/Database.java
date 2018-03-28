@@ -50,7 +50,7 @@ public class Database extends Thread {
                 break;
         }
         System.out.println(rol);
-        String query = "select * from user where username = ? and pass = ? and role = ?";
+        String query = "select * from Usuario where username = ? and pass = ? and role = ?";
         ps = (PreparedStatement) conObj.prepareStatement(query);
         ps.setString(1,user);
         ps.setString(2,pass);

@@ -1,9 +1,12 @@
 package module;
 
+import core.Session;
+import core.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +23,7 @@ public class Controller implements Initializable {
     @FXML
     Button loginBtn;
     @FXML
-    ComboBox<String> comboType;
+    ComboBox<String> comboType; // cambiar tipo de dato a desplegar
     @FXML
     Label loginLabel;
     @FXML
@@ -42,20 +45,22 @@ public class Controller implements Initializable {
             userLoginPass.setText("");
             userLoginText.setPromptText("Minimo 8 caracteres");
             userLoginPass.setPromptText("Minimo 8 caracteres");
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Aun no se definen acciones para el boton!" +
+                    "\nEditar metodo login_Btn() para agregar login \n" +
+                    "con user role y password de la BD");
+
+
+            alert.showAndWait();
         }
         else {
-            System.out.println("bienvenido");
+           // lo de login con el user de la bd
         }
 
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("Aun no se definen acciones para el boton!" +
-                "\nEditar metodo login_Btn() para agregar login \n" +
-                "con user role y password de la BD");
 
-
-        alert.showAndWait();
     }
 
 
@@ -63,8 +68,14 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         userLoginText.setPromptText("Minimo 8 caracteres");
         userLoginPass.setPromptText("Minimo 8 caracteres");
+      /*  comboType.setItems(FXCollections.observableArrayList(
+                User.Rol.Admin,
+                User.Rol.General,
+                User.Rol.Medico,
+                User.Rol.Root
+        ));*/
     }
-
+    @FXML
     public void temporalLogin(){ //METODO TEMPORAL PARA BRINCAR EL LOGIN
 
         try{

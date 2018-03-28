@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorpane_cita" prefHeight="563.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.citas.ControllerCita">
+   <children>
+      <TextField fx:id="text_paciente" layoutX="36.0" layoutY="74.0" prefHeight="26.0" prefWidth="198.0" promptText="Nombre de paciente" />
+      <TextField fx:id="text_mascota" layoutX="250.0" layoutY="74.0" prefHeight="26.0" prefWidth="198.0" promptText="Nombre de mascota" />
+      <AnchorPane fx:id="otro_anchorpane" layoutY="207.0" prefHeight="356.0" prefWidth="758.0" />
+      <Button fx:id="boton_guardar_cita" layoutX="460.0" layoutY="175.0" mnemonicParsing="false" onAction="#citaAdd" text="Guardar" />
+      <DatePicker fx:id="fecha_picker" layoutX="460.0" layoutY="74.0" promptText="Fecha inicial" />
+      <TextField fx:id="text_hora" layoutX="669.0" layoutY="74.0" prefHeight="26.0" prefWidth="36.0" promptText="23" />
+      <TextField fx:id="text_minuto" layoutX="716.0" layoutY="74.0" prefHeight="26.0" prefWidth="36.0" promptText="59" />
+      <Label layoutX="709.0" layoutY="79.0" text=":" />
+      <TextArea fx:id="text_area_nueva_cita" editable="false" layoutX="37.0" layoutY="113.0" prefHeight="88.0" prefWidth="198.0" visible="false" />
+      <TextField fx:id="text_hora_f" layoutX="670.0" layoutY="129.0" prefHeight="26.0" prefWidth="36.0" promptText="23" />
+      <TextField fx:id="text_minuto_f" layoutX="717.0" layoutY="129.0" prefHeight="26.0" prefWidth="36.0" promptText="59" />
+      <Label layoutX="710.0" layoutY="134.0" text=":" />
+      <Label layoutX="694.0" layoutY="58.0" text="Inicio" />
+      <Label layoutX="703.0" layoutY="113.0" text="Fin" />
+      <DatePicker fx:id="fecha_picker_f" layoutX="460.0" layoutY="129.0" promptText="Fecha final" />
+      <Button fx:id="button_test" layoutX="359.0" layoutY="175.0" mnemonicParsing="false" onAction="#reAgendar" text="Test" />
+      <ComboBox fx:id="combox_medico" layoutX="250.0" layoutY="129.0" prefHeight="26.0" prefWidth="198.0" />
+   </children>
+</AnchorPane>
