@@ -3,7 +3,8 @@ package module.database;
  *
  * */
 import java.sql.*;
-
+/**
+ * */
 public class Database extends Thread {
     protected Connection conObj;
     protected Statement stObj;
