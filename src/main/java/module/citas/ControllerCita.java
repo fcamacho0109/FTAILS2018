@@ -67,9 +67,9 @@ public class ControllerCita implements Initializable {
 
         } catch (Exception e) {
 
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning dialog");
-            alert.setHeaderText("ADVERTENCIA");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
             alert.setContentText("Recuerde completar datos correctamente...\n" +e.toString());
             alert.showAndWait();
         }
@@ -90,8 +90,8 @@ public class ControllerCita implements Initializable {
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning dialog");
-            alert.setHeaderText("ADVERTENCIA");
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
             alert.setContentText(e.toString());
             alert.showAndWait();
         }

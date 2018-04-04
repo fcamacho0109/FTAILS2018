@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -14,6 +13,5 @@
       <Button fx:id="boton_buscar" layoutX="754.0" layoutY="123.0" mnemonicParsing="false" onAction="#buscarCita" text="Buscar" />
       <RadioButton fx:id="radio_agenda" layoutX="752.0" layoutY="76.0" mnemonicParsing="false" prefWidth="74.0" text="Agenda" />
       <RadioButton fx:id="radio_lista" layoutX="752.0" layoutY="50.0" mnemonicParsing="false" text="Lista" />
-      <ProgressBar fx:id="progress_Bar_buscar" layoutX="752.0" layoutY="166.0" prefHeight="20.0" prefWidth="253.0" progress="0.0" />
    </children>
 </AnchorPane>

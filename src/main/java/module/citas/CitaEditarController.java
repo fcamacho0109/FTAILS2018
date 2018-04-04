@@ -3,7 +3,6 @@ package module.citas;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 
@@ -17,8 +16,6 @@ public class CitaEditarController implements Initializable {
     ScrollPane scroll_agenda;
     @FXML
     Button boton_guardar;
-    @FXML
-    ProgressBar progress_bar_guardar; // utilizar codigo de Android para simular progreso
     @FXML
     public void updateCitas() {
         // actualizar citas en la BD
