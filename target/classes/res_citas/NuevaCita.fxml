@@ -19,13 +19,10 @@
       <TextField fx:id="text_minuto" layoutX="716.0" layoutY="74.0" prefHeight="26.0" prefWidth="36.0" promptText="59" />
       <Label layoutX="709.0" layoutY="79.0" text=":" />
       <TextArea fx:id="text_area_nueva_cita" editable="false" layoutX="37.0" layoutY="113.0" prefHeight="88.0" prefWidth="198.0" visible="false" />
-      <TextField fx:id="text_hora_f" layoutX="670.0" layoutY="129.0" prefHeight="26.0" prefWidth="36.0" promptText="23" />
-      <TextField fx:id="text_minuto_f" layoutX="717.0" layoutY="129.0" prefHeight="26.0" prefWidth="36.0" promptText="59" />
-      <Label layoutX="710.0" layoutY="134.0" text=":" />
+      <TextField fx:id="text_minuto_f" layoutX="460.0" layoutY="129.0" prefHeight="26.0" prefWidth="35.0" promptText="59" />
       <Label layoutX="694.0" layoutY="58.0" text="Inicio" />
-      <Label layoutX="703.0" layoutY="113.0" text="Fin" />
-      <DatePicker fx:id="fecha_picker_f" layoutX="460.0" layoutY="129.0" promptText="Fecha final" />
       <Button fx:id="button_test" layoutX="359.0" layoutY="175.0" mnemonicParsing="false" onAction="#reAgendar" text="Test" />
       <ComboBox fx:id="combox_medico" layoutX="250.0" layoutY="129.0" prefHeight="26.0" prefWidth="198.0" />
+      <Label fx:id="label_minutos" layoutX="509.0" layoutY="134.0" text="Minutos de cita" />
    </children>
 </AnchorPane>
