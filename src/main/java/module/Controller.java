@@ -13,8 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import module.database.Database;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 /**
  * */
@@ -94,6 +96,14 @@ public class Controller implements Initializable {
                                  final ResourceBundle resources) {
         userLoginText.setPromptText("Minimo 8 caracteres");
         userLoginPass.setPromptText("Minimo 8 caracteres");
+        try {
+            Database data = new Database();
+            data.run();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
       /*  comboType.setItems(FXCollections.observableArrayList(
                 User.Rol.Admin,
                 User.Rol.General,

@@ -3,23 +3,24 @@ package module.database;
  *
  * */
 import java.sql.*;
+import java.util.ArrayList;
+
 /**
  * */
 public class Database extends Thread {
     protected Connection conObj;
     protected Statement stObj;
     protected PreparedStatement ps = null;
-    /**
-     *
-     * */
+    protected ResultSet result = null;
+    private ArrayList<String> productList;
+    private String query = "";
+
     private  void Setup() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver"); /*Loading Driver class for JDBC*/
-        conObj = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/veterinaria_local","sql3223639","MrMdq6v7EL");
+        conObj = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10236271","sql10236271","YKACBtGFXM");
         stObj = conObj.createStatement();
     }
-    /**
-     *
-     * */
+
     public void run() {
         try {
             Setup();
@@ -31,12 +32,147 @@ public class Database extends Thread {
             e.printStackTrace();
         }
     }
-    public Database() throws SQLException , ClassNotFoundException {
+
+    public Database() throws SQLException, ClassNotFoundException {
         run();
     }
+
     /**
-     *
+     * Regresa la lista de productos.
+     * @return productList para pintar.
      * */
+    public ArrayList<String> productos() throws SQLException {
+        //run();
+        productList = new ArrayList<>();
+        query = "SELECT * FROM PRODUCTOS WHERE existencia>0";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            productList.add(result.getString("nombre"));
+        }
+
+        conObj.close();
+        return productList;
+    }
+
+    /**
+     * Registro de ventas
+     * */
+    public void registrarVenta(float subtotal, float iva, float total, Date fecha, String descripcion)
+            throws SQLException {
+        String subquery = "SELECT MAX(idventa)+1";
+        query = "INSERT INTO VENTAS (idventa,subtotal,iva,total,fecha,descripcion) " +
+                "VALUES ("+subquery+",?,?,?,?,?)";
+        ps = conObj.prepareStatement(query);
+
+        ps.setFloat(2,subtotal);
+        ps.setFloat(3,iva);
+        ps.setFloat(4,total);
+        ps.setDate(5,fecha);
+        ps.setString(6,descripcion);
+        ps.execute();
+
+        conObj.close();
+    }
+
+    public String prodName (int idProd)
+            throws SQLException {
+        String pName = "";
+        query = "SELECT nombre FROM PRODUCTOS WHERE idproducto = ?";
+        ps = conObj.prepareStatement(query);
+
+        ps.setInt(1, idProd);
+        result = stObj.executeQuery(query);
+        pName = result.getString("nombre");
+
+        conObj.close();
+        return pName;
+    }
+
+    public void registrarProdVta(int idProd,int idVta, float precio,String descripcion)
+            throws SQLException {
+        String subquery = "SELECT MAX(idproducto_venta)+1";
+        query = "INSERT INTO PRODUCTO_VENTA(idproducto_venta,idproducto,idventa,precio,descripcion) " +
+                                "VALUES("+subquery+",?,?,?,?)";
+
+        ps = conObj.prepareStatement(query);
+
+        ps.setInt(2,idProd);
+        ps.setInt(3,idVta);
+        ps.setFloat(4,precio);
+        ps.setString(5,descripcion);
+
+        ps.execute();
+        conObj.close();
+    }
+
+    public int prodStock (String nombreProd)
+            throws SQLException {
+        int stock = 0;
+        query = "SELECT existencia FROM PRODUCTOS WHERE nombre = ?";
+        ps = conObj.prepareStatement(query);
+
+        ps.setString(1,nombreProd);
+        result = stObj.executeQuery(query);
+        stock = result.getInt("existencia");
+
+        conObj.close();
+        return stock;
+    }
+
+    public void updateProds(int stock, String prodName)
+            throws SQLException {
+
+        query = "UPDATE PRODUCTOS SET " +
+                              "existencia = ? "+
+                              "WHERE nombre = ?";
+        ps = conObj.prepareStatement(query);
+
+        ps.setInt(1,stock-1);
+        ps.setString(2,prodName);
+
+        ps.executeUpdate();
+        conObj.close();
+    }
+
+/**
+ * UPDATE `sql10236271`.`PRODUCTOS`
+ * SET
+ * `existencia` = (SELECT MAX(`PRODUCTOS`.`existencia`)-1)
+ * WHERE `idproducto` = 1;
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public int validateUser(String user, String pass,String role) throws Exception {
         int rol = -1;
         System.out.println(role);

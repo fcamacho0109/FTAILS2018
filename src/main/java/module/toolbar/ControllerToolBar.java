@@ -111,4 +111,13 @@ public class ControllerToolBar {
         AnchorPane temp = (AnchorPane) fxmlLoader.load();
         anchorpane_workspace.getChildren().setAll(temp);
     }
+    @FXML
+    public void nuevaVenta() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_VENTA = "/res_ventas/VentaMenu.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_VENTA));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
 }
