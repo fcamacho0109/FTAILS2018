@@ -12,7 +12,9 @@ import module.productos.Producto;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ControllerVentas implements Initializable {
@@ -25,6 +27,8 @@ public class ControllerVentas implements Initializable {
     ComboBox<String> combobox_lista_productos;
     @FXML
     Label label_subtotal,label_iva,label_total;
+    @FXML
+    TextField textfield_descripcion;
     @FXML
     TextField textfield_producto;
     @FXML
@@ -45,7 +49,7 @@ public class ControllerVentas implements Initializable {
             if (cantidad<producto.getExistencia())
                 producto.setCantidad(cantidad);
             else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Not enough products");
                 alert.setHeaderText(null);
                 alert.setContentText("No hay suficientes productos para la dicha venta!");
@@ -105,9 +109,52 @@ public class ControllerVentas implements Initializable {
     }
 
     @FXML
-    public void vender(){
+    public void vender() throws SQLException, ClassNotFoundException {
         // descontar existencia de productos y registrar en ventas
+        Database database = new Database();
+        Database aux1 = new Database();
+        int maxVtaId = aux1.maxVtaId()+1;
+        float ventaSubtotal;
+        float ventaIva;
+        float ventaTotal;
+        Date ventaFecha = new Date();
+        String ventaDescripcion;
 
+        ventaSubtotal = Float.parseFloat(label_subtotal.getText());
+        ventaIva = Float.parseFloat(label_iva.getText());
+        ventaTotal = Float.parseFloat(label_total.getText());
+        ventaDescripcion = textfield_descripcion.getText();
+
+        if (!(ventaDescripcion == null)) { // ingresar venta
+            database.registrarVenta(maxVtaId,ventaSubtotal,ventaIva,ventaTotal,ventaFecha,ventaDescripcion);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No descripcion");
+            alert.setHeaderText(null);
+            alert.setContentText("Favor de ingresar descripcion para la venta!");
+
+            alert.showAndWait();
+        }
+        /*
+         * insertar venta_producto y actualizar stock:
+         * */
+        Database aux = new Database();
+        for (Producto p: listaProductosVenta) {
+            database = new Database();
+            aux = new Database();
+            int pId = aux.prodId(p.getNombre());
+            int vId = aux.maxVtaId();
+            int pStock = p.getExistencia() - p.getCantidad();
+
+            database.registrarProdVta(pId,vId,p.getPrecio(),ventaDescripcion); //idProducto, idVenta, precio, descripcion
+            database.updateProds(pStock,p.getNombre()); //stock, prodName
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Venta");
+        alert.setHeaderText(null);
+        alert.setContentText("Venta concretada!");
+
+        alert.showAndWait();
 
     }
 

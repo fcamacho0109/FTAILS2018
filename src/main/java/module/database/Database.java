@@ -6,7 +6,9 @@ import module.productos.Producto;
 import module.ventas.Venta;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * */
@@ -82,21 +84,25 @@ public class Database extends Thread {
     /**
      * Registro de ventas
      * */
-    public void registrarVenta(float subtotal, float iva, float total, Date fecha, String descripcion)
+    public void registrarVenta(int mVtaId,float subtotal, float iva, float total, Date fecha, String descripcion)
             throws SQLException {
-        String subquery = "SELECT MAX(idventa)+1";
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDate = dateFormat.format(fecha);
+
+        //String subquery = "SELECT MAX(idventa)+1 FROM VENTAS";
         query = "INSERT INTO VENTAS (idventa,subtotal,iva,total,fecha,descripcion) " +
-                "VALUES ("+subquery+",?,?,?,?,?)";
+                "VALUES ("+mVtaId+",?,?,?,?,?)";
         ps = conObj.prepareStatement(query);
 
-        ps.setFloat(2,subtotal);
-        ps.setFloat(3,iva);
-        ps.setFloat(4,total);
-        ps.setDate(5,fecha);
-        ps.setString(6,descripcion);
+        ps.setFloat(1,subtotal);
+        ps.setFloat(2,iva);
+        ps.setFloat(3,total);
+        ps.setString(4, currentDate);
+        ps.setString(5,descripcion);
         ps.execute();
 
-        conObj.close();
+        //conObj.close();
     }
 
     public String prodName (int idProd)
@@ -109,25 +115,63 @@ public class Database extends Thread {
         result = stObj.executeQuery(query);
         pName = result.getString("nombre");
 
-        conObj.close();
+        //conObj.close();
         return pName;
     }
 
+    public int prodId (String pName)
+            throws SQLException {
+        int pId = -1;
+        query = "SELECT idproducto FROM PRODUCTOS WHERE nombre = '"+pName+"'";
+
+        result = stObj.executeQuery(query);
+        if (result.next()) {
+            pId = result.getInt(1);
+        }
+
+        //conObj.close();
+        return pId;
+    }
+
+    public int maxVtaId ()
+            throws SQLException {
+        int vMaxId = -1;
+        query = "SELECT MAX(idventa) FROM VENTAS";
+        result = stObj.executeQuery(query);
+        if (result.next()) {
+            vMaxId = result.getInt(1);
+        }
+        System.out.println("maximo id venta: "+vMaxId);
+        //conObj.close();
+        return vMaxId;
+    }
+    public int maxPrVtaId ()
+            throws SQLException {
+        int vMaxId = -1;
+        query = "SELECT MAX(idproducto_venta) FROM PRODUCTO_VENTA";
+        result = stObj.executeQuery(query);
+        if (result.next()) {
+            vMaxId = result.getInt(1);
+        }
+        System.out.println("maximo id prod_venta: "+vMaxId);
+        //conObj.close();
+        return vMaxId;
+    }
     public void registrarProdVta(int idProd,int idVta, float precio,String descripcion)
             throws SQLException {
-        String subquery = "SELECT MAX(idproducto_venta)+1";
+        int maxId = maxPrVtaId ()+1;
         query = "INSERT INTO PRODUCTO_VENTA(idproducto_venta,idproducto,idventa,precio,descripcion) " +
-                                "VALUES("+subquery+",?,?,?,?)";
+                                "VALUES("+maxId+",?,?,?,?)";
 
         ps = conObj.prepareStatement(query);
 
-        ps.setInt(2,idProd);
-        ps.setInt(3,idVta);
-        ps.setFloat(4,precio);
-        ps.setString(5,descripcion);
+        ps.setInt(1,idProd);
+        ps.setInt(2,idVta);
+        ps.setFloat(3,precio);
+        ps.setString(4,descripcion);
 
         ps.execute();
-        conObj.close();
+       // conObj.close();
     }
     /**
      * verifica la existencia del producto.
@@ -142,7 +186,7 @@ public class Database extends Thread {
         result = stObj.executeQuery(query);
         stock = result.getInt("existencia");
 
-        conObj.close();
+        //conObj.close();
         return stock;
     }
     /**
@@ -167,7 +211,7 @@ public class Database extends Thread {
             producto.setPrecio(result.getFloat("precio"));
             producto.setExistencia(result.getInt("existencia"));
         }
-        conObj.close();
+        //conObj.close();
         return producto;
     }
     /**

@@ -7,18 +7,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorpane_venta" prefHeight="503.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.ventas.ControllerVentas">
+<AnchorPane fx:id="anchorpane_venta" prefHeight="580.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.ventas.ControllerVentas">
    <children>
-      <ScrollPane fx:id="scrollpane_lista" layoutX="14.0" layoutY="107.0" prefHeight="318.0" prefWidth="744.0" />
+      <ScrollPane fx:id="scrollpane_lista" layoutX="14.0" layoutY="107.0" prefHeight="318.0" prefWidth="756.0" />
       <TextField fx:id="textfield_producto" layoutX="14.0" layoutY="58.0" prefHeight="26.0" prefWidth="182.0" promptText="Cantidad" />
       <Button fx:id="button_agregar" layoutX="216.0" layoutY="58.0" mnemonicParsing="false" onAction="#addProducts" text="Agregar" />
       <ComboBox fx:id="combobox_lista_productos" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="182.0" promptText="Lista de productos..." />
-      <Button fx:id="button_vender" layoutX="14.0" layoutY="463.0" mnemonicParsing="false" onAction="#vender" text="Vender" />
-      <Label layoutX="368.0" layoutY="472.0" text="Total:" />
-      <Label fx:id="label_total" layoutX="437.0" layoutY="472.0" />
-      <Label layoutX="368.0" layoutY="452.0" text="IVA:" />
-      <Label layoutX="368.0" layoutY="431.0" text="Subtotal:" />
-      <Label fx:id="label_iva" layoutX="436.0" layoutY="451.0" />
-      <Label fx:id="label_subtotal" layoutX="436.0" layoutY="431.0" />
+      <Button fx:id="button_vender" layoutX="342.0" layoutY="441.0" mnemonicParsing="false" onAction="#vender" text="Vender" />
+      <Label layoutX="599.0" layoutY="476.0" text="Total:" />
+      <Label fx:id="label_total" layoutX="668.0" layoutY="476.0" />
+      <Label layoutX="599.0" layoutY="456.0" text="IVA:" />
+      <Label layoutX="599.0" layoutY="435.0" text="Subtotal:" />
+      <Label fx:id="label_iva" layoutX="667.0" layoutY="455.0" />
+      <Label fx:id="label_subtotal" layoutX="667.0" layoutY="435.0" />
+      <TextField fx:id="textfield_descripcion" layoutX="14.0" layoutY="442.0" prefHeight="26.0" prefWidth="312.0" promptText="Ingresar una descripcion breve de la venta..." />
    </children>
 </AnchorPane>
