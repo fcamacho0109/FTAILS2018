@@ -1,11 +1,13 @@
 package module.citas;
-
+/**
+ * */
 import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+/**
+ * */
 public class Cita {
     private String pacienteNombre = "";
     private String mascotaNombre = "";
@@ -22,109 +24,135 @@ public class Cita {
     public Cita() {
     }
 
-    public Cita(String pacienteNombre, String mascotaNombre, String medico,
-                String fechaInicial, String horaInicial, String minutoInicial,
-                String fechaFinal, String horaFinal, String minutoFinal) {
-        this.pacienteNombre = pacienteNombre;
-        this.mascotaNombre = mascotaNombre;
-        this.medico = medico;
-        this.fechaInicial = fechaInicial;
-        this.horaInicial = horaInicial;
-        this.minutoInicial = minutoInicial;
-        this.fechaFinal = fechaFinal;
-        this.horaFinal = horaFinal;
-        this.minutoFinal = minutoFinal;
+    public Cita(final String pacienteNom, final String mascotaNom,
+                final String doctor, final String fechaIni,
+                final String horaIni, final String minutoIni,
+                final String fechaFi, final String horaFi,
+                final String minutoFi) {
+        this.pacienteNombre = pacienteNom;
+        this.mascotaNombre = mascotaNom;
+        this.medico = doctor;
+        this.fechaInicial = fechaIni;
+        this.horaInicial = horaIni;
+        this.minutoInicial = minutoIni;
+        this.fechaFinal = fechaFi;
+        this.horaFinal = horaFi;
+        this.minutoFinal = minutoFi;
     }
-
-    public String getPacienteNombre() {
+    /**
+     * */
+    public final String getPacienteNombre() {
         return pacienteNombre;
     }
-
-    public void setPacienteNombre(String pacienteNombre) {
+    /**
+     * */
+    public final void setPacienteNombre(final String pacienteNombre) {
         this.pacienteNombre = pacienteNombre;
     }
-
-    public String getMascotaNombre() {
+    /**
+     * */
+    public final String getMascotaNombre() {
         return mascotaNombre;
     }
-
-    public void setMascotaNombre(String mascotaNombre) {
+    /**
+     * */
+    public final void setMascotaNombre(final String mascotaNombre) {
         this.mascotaNombre = mascotaNombre;
     }
-
-    public String getMedico() {
+    /**
+     * */
+    public final String getMedico() {
         return medico;
     }
-
-    public void setMedico(String medico) {
+    /**
+     * */
+    public final void setMedico(final String medico) {
         this.medico = medico;
     }
-
-    public String getFechaInicial() {
+    /**
+     * */
+    public final String getFechaInicial() {
         return fechaInicial;
     }
-
-    public void setFechaInicial(String fechaInicial) {
+    /**
+     * */
+    public final void setFechaInicial(final String fechaInicial) {
         this.fechaInicial = fechaInicial;
     }
-
-    public String getHoraInicial() {
+    /**
+     * */
+    public final String getHoraInicial() {
         return horaInicial;
     }
-
-    public void setHoraInicial(String horaInicial) {
+    /**
+     * */
+    public final void setHoraInicial(final String horaInicial) {
         this.horaInicial = horaInicial;
     }
-
-    public String getMinutoInicial() {
+    /**
+     * */
+    public final String getMinutoInicial() {
         return minutoInicial;
     }
-
-    public void setMinutoInicial(String minutoInicial) {
+    /**
+     * */
+    public final void setMinutoInicial(final String minutoInicial) {
         this.minutoInicial = minutoInicial;
     }
-
-    public String getFechaFinal() {
+    /**
+     * */
+    public final String getFechaFinal() {
         return fechaFinal;
     }
-
-    public void setFechaFinal(String fechaFinal) {
+    /**
+     * */
+    public final void setFechaFinal(final String fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
-
-    public String getHoraFinal() {
+    /**
+     * */
+    public final String getHoraFinal() {
         return horaFinal;
     }
-
-    public void setHoraFinal(String horaFinal) {
+    /**
+     * */
+    public final void setHoraFinal(final String horaFinal) {
         this.horaFinal = horaFinal;
     }
-
-    public String getMinutoFinal() {
+    /**
+     * */
+    public final String getMinutoFinal() {
         return minutoFinal;
     }
-
-    public void setMinutoFinal(String minutoFinal) {
+    /**
+     * */
+    public final void setMinutoFinal(final String minutoFinal) {
         this.minutoFinal = minutoFinal;
     }
-
-    public int guardarCita(Connection connection){
+    /**
+     * */
+    public final int guardarCita(final Connection connection) {
         try {
-            //String idQuery = "SELECT MAX(idCita)+1 FROM Citas"; // debe tener otro prepared statement
-            String query = "INSERT INTO Citas (idCita, paciente, mascota, medico, fechaInicial," +
-                    "horaInicial, minutoInicial, fechaFinal, horaFinal, minutoFinal) " +
-                    "VALUES (SELECT MAX(idCita)+1 FROM Citas,?,?,?,?,?,?,?,?,?)";
+            //String idQuery = "SELECT MAX(idCita)+1 FROM Citas";
+            // debe tener otro prepared statement
+            String query = "INSERT INTO Citas "
+                    + "(idCita, paciente, mascota, medico, fechaInicial,"
+                    + "horaInicial, minutoInicial, fechaFinal, horaFinal,"
+                    + "minutoFinal) "
+                    + "VALUES"
+                    + " (SELECT MAX(idCita)+1 FROM Citas,?,?,?,?,?,?,?,?,?)";
 
-            PreparedStatement instruction = connection.prepareStatement(query); // no se si se empieza desde 1
-            instruction.setString(2,getPacienteNombre());
-            instruction.setString(3,getMascotaNombre());
-            instruction.setString(4,getMedico());
-            instruction.setString(5,getFechaInicial());
-            instruction.setInt(6,Integer.valueOf(getHoraInicial()));
-            instruction.setInt(7,Integer.valueOf(getMinutoInicial()));
-            instruction.setString(8,getFechaFinal());
-            instruction.setInt(9,Integer.valueOf(getHoraFinal()));
-            instruction.setInt(10,Integer.valueOf(getMinutoFinal()));
+            PreparedStatement instruction = connection.prepareStatement(query);
+            // no se si se empieza desde 1
+            instruction.setString(2, getPacienteNombre());
+            instruction.setString(3, getMascotaNombre());
+            instruction.setString(4, getMedico());
+            instruction.setString(5, getFechaInicial());
+            instruction.setInt(6, Integer.valueOf(getHoraInicial()));
+            instruction.setInt(7, Integer.valueOf(getMinutoInicial()));
+            instruction.setString(8, getFechaFinal());
+            instruction.setInt(9, Integer.valueOf(getHoraFinal()));
+            instruction.setInt(10, Integer.valueOf(getMinutoFinal()));
 
             return instruction.executeUpdate();
 
@@ -138,10 +166,3 @@ public class Cita {
         }
     }
 }
-/* *
- * https://github.com/konkkeror/JavaFX_MySQL_Tutorial/tree/master/EjercicioAlumnos/src
- * */
-
-/* *
- * http://lineadecodigo.com/java/conectar-mysql-java/
- * */

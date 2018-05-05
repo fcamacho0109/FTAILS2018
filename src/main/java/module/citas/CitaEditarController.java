@@ -1,5 +1,6 @@
 package module.citas;
-
+/**
+ * */
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,23 +9,33 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**
+ * */
 public class CitaEditarController implements Initializable {
+    /**
+     * */
     @FXML
-    AnchorPane anchor_pane_base;
+    private AnchorPane anchor_pane_base;
+    /**
+     * */
     @FXML
-    ScrollPane scroll_agenda;
+    private ScrollPane scroll_agenda;
+    /**
+     * */
     @FXML
-    Button boton_guardar;
+    private Button boton_guardar;
+    /**
+     * */
     @FXML
-    public void updateCitas() {
+    public final void updateCitas() {
         // actualizar citas en la BD
         // controller cita tiene funcion re agendar con metodos que funcionarian
         // revisar mis notas de voz para ver como tratar los datos de la agenda
     }
-
+    /**
+     * */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public final void initialize(URL location, ResourceBundle resources) {
         // cargar los datos de la BD tabla de citas en la agenda
     }
 }

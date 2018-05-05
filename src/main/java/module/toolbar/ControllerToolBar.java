@@ -10,82 +10,82 @@ import javafx.scene.layout.AnchorPane;
 public class ControllerToolBar {
     // anchorpane todo:
     @FXML
-    AnchorPane anchorpane_workspace;
+    private AnchorPane anchorpane_workspace;
     // todas las tabs:
     @FXML
-    TabPane principal_tab_pane;
+    private TabPane principal_tab_pane;
     // citas:
     @FXML
-    Tab tab_citas;
+    private Tab tab_citas;
     @FXML
-    Button boton_nueva_cita;
+    private Button boton_nueva_cita;
     @FXML
-    Button boton_editar_cita;
+    private Button boton_editar_cita;
     @FXML
-    Button boton_ver_cita;
+    private Button boton_ver_cita;
     // pacientes:
     @FXML
-    Tab tab_pacientes;
+    private Tab tab_pacientes;
     @FXML
-    Button boton_nuevo_paciente;
+    private Button boton_nuevo_paciente;
     @FXML
-    Button boton_editar_paciente;
+    private Button boton_editar_paciente;
     @FXML
-    Button boton_lista_paciente;
+    private Button boton_lista_paciente;
     // compra y venta:
     @FXML
-    Tab tab_compra_venta;
+    private Tab tab_compra_venta;
     @FXML
-    Button boton_nueva_venta;
+    private Button boton_nueva_venta;
     @FXML
-    Button boton_lista_venta;
+    private Button boton_lista_venta;
     @FXML
-    Button boton_stats_venta;
+    private Button boton_stats_venta;
     @FXML
-    Button boton_nueva_compra;
+    private Button boton_nueva_compra;
     @FXML
-    Button boton_lista_compra;
+    private Button boton_lista_compra;
     @FXML
-    Button boton_stats_compra;
+    private Button boton_stats_compra;
     @FXML
-    Button boton_ganancias;
+    private Button boton_ganancias;
     // productos:
     @FXML
-    Tab tab_inventario;
+    private Tab tab_inventario;
     @FXML
-    Button boton_nuevo_producto;
+    private Button boton_nuevo_producto;
     @FXML
-    Button boton_editar_producto;
+    private Button boton_editar_producto;
     @FXML
-    Button boton_lista_producto;
+    private Button boton_lista_producto;
     // Recetas:
     @FXML
-    Tab tab_recetas;
+    private Tab tab_recetas;
     @FXML
-    Button boton_nueva_receta;
+    private Button boton_nueva_receta;
     @FXML
-    Button boton_editar_receta;
+    private Button boton_editar_receta;
     @FXML
-    Button boton_lista_receta;
+    private Button boton_lista_receta;
     // usuarios:
     @FXML
-    Tab tab_usuarios;
+    private Tab tab_usuarios;
     @FXML
-    Button boton_nuevo_usuario;
+    private Button boton_nuevo_usuario;
     @FXML
-    Button boton_editar_usuario;
+    private Button boton_editar_usuario;
     @FXML
-    Button boton_lista_usuario;
+    private Button boton_lista_usuario;
     // Help:
     @FXML
-    Tab tab_ayuda;
+    private Tab tab_ayuda;
     @FXML
-    Button boton_ayuda_help;
+    private Button boton_ayuda_help;
     @FXML
-    Button boton_ayuda_info;
+    private Button boton_ayuda_info;
 
     @FXML
-    public void nuevaCita() throws Exception{
+    public void nuevaCita() throws Exception {
         // carga la vista de nueva cita
         final String RUTA_CITA = "/res_citas/NuevaCita.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -108,6 +108,15 @@ public class ControllerToolBar {
         final String RUTA_CITA = "/res_citas/VerCita.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(RUTA_CITA));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+    @FXML
+    public void nuevaVenta() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_VENTA = "/res_ventas/VentaMenu.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_VENTA));
         AnchorPane temp = (AnchorPane) fxmlLoader.load();
         anchorpane_workspace.getChildren().setAll(temp);
     }
