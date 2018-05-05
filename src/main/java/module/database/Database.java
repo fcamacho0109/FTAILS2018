@@ -2,6 +2,7 @@ package module.database;
 /**
  *
  * */
+import module.empleados.Empleado;
 import module.productos.Producto;
 import module.ventas.Venta;
 
@@ -251,4 +252,26 @@ public class Database extends Thread {
             return rs.getInt(1);
         return 0;
     }
+
+    public ArrayList<Empleado> listaEmpleados() throws SQLException {
+        ArrayList<Empleado> empleadoArrayList = new ArrayList<>();
+        Empleado empleados;
+        query = "SELECT * FROM EMPLEADOS";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+
+        while (result.next()) {
+            empleados = new Empleado();
+            empleados.setNombre(result.getString("nombre"));
+            empleados.setTelefono(result.getString("telefono"));
+            empleados.setDomicilio(result.getString("domicilio"));
+            empleados.setRol(result.getString("rol"));
+
+
+            empleadoArrayList.add(empleados);
+        }
+
+        return empleadoArrayList;
+    }
+
 }

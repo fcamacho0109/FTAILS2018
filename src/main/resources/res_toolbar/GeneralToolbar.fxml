@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="643.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.toolbar.ControllerToolBar">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="643.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.toolbar.ControllerToolBar">
    <children>
       <TabPane fx:id="principal_tab_pane" prefHeight="148.0" prefWidth="759.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -243,7 +243,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_lista_usuario" contentDisplay="TOP" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="114.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Usuarios">
+                        <Button fx:id="onClickUsuario" contentDisplay="TOP" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickUsuario" prefHeight="95.0" prefWidth="114.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Usuarios">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

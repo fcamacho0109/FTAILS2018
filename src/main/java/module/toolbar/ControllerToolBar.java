@@ -129,4 +129,14 @@ public class ControllerToolBar {
         AnchorPane temp = (AnchorPane) fxmlLoader.load();
         anchorpane_workspace.getChildren().setAll(temp);
     }
+
+    @FXML
+    public void onClickUsuario() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_EMPLEADOS = "/res_empleados/EmpleadosListado.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_EMPLEADOS));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
 }
