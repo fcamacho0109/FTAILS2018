@@ -107,7 +107,7 @@ public class ControllerVentas implements Initializable {
     @FXML
     public void vender(){
         // descontar existencia de productos y registrar en ventas
-        
+
 
     }
 

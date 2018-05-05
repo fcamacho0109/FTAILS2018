@@ -3,6 +3,7 @@ package module.database;
  *
  * */
 import module.productos.Producto;
+import module.ventas.Venta;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -57,6 +58,27 @@ public class Database extends Thread {
         return productList;
     }
 
+    public ArrayList<Venta> listaVenta() throws SQLException {
+        ArrayList<Venta> ventas = new ArrayList<>();
+        Venta venta;
+        query = "SELECT * FROM VENTAS";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+
+        while (result.next()) {
+            venta = new Venta();
+            venta.setSubtotal(result.getFloat("subtotal"));
+            venta.setIva(result.getInt("iva"));
+            venta.setTotal(result.getFloat("total"));
+            venta.setFecha(result.getDate("fecha"));
+            venta.setDescripcion(result.getString("descripcion"));
+
+            ventas.add(venta);
+        }
+
+        return ventas;
+    }
+
     /**
      * Registro de ventas
      * */
@@ -107,7 +129,9 @@ public class Database extends Thread {
         ps.execute();
         conObj.close();
     }
-
+    /**
+     * verifica la existencia del producto.
+     * */
     public int prodStock (String nombreProd)
             throws SQLException {
         int stock = 0;
@@ -121,7 +145,9 @@ public class Database extends Thread {
         conObj.close();
         return stock;
     }
-
+    /**
+     * regresa el producto y sus columnas de acuerdo al nombre.
+     * */
     public Producto prodData (String nombreProd)
             throws SQLException {
         result = null;
@@ -144,7 +170,9 @@ public class Database extends Thread {
         conObj.close();
         return producto;
     }
-
+    /**
+     *
+     * */
     public void updateProds(int stock, String prodName)
             throws SQLException {
 
