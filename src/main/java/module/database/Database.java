@@ -2,6 +2,8 @@ package module.database;
 /**
  *
  * */
+import module.productos.Producto;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -118,6 +120,29 @@ public class Database extends Thread {
 
         conObj.close();
         return stock;
+    }
+
+    public Producto prodData (String nombreProd)
+            throws SQLException {
+        result = null;
+        run();
+        Producto producto = new Producto();
+        query = "SELECT * FROM PRODUCTOS WHERE nombre = '"+nombreProd+"'";
+        stObj = conObj.createStatement();
+
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            System.out.println(result.getString("nombre"));
+            System.out.println(result.getInt("tipo"));
+
+            producto.setNombre(result.getString("nombre"));
+            producto.setTipo(result.getInt("tipo"));
+            producto.setDescripcion(result.getString("descripcion"));
+            producto.setPrecio(result.getFloat("precio"));
+            producto.setExistencia(result.getInt("existencia"));
+        }
+        conObj.close();
+        return producto;
     }
 
     public void updateProds(int stock, String prodName)
