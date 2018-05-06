@@ -21,7 +21,7 @@ public class ControllerVentas implements Initializable {
     private float total = 0.0f;
     private ArrayList<String> listaProductos;
     private Producto producto;
-    private ObservableList<Producto> listaProductosVenta = FXCollections.observableArrayList();;
+    private ObservableList<Producto> listaProductosVenta = FXCollections.observableArrayList();
     private ArrayList<Producto> listaProds = new ArrayList<>();
     @FXML
     ComboBox<String> combobox_lista_productos;
@@ -140,8 +140,8 @@ public class ControllerVentas implements Initializable {
          * */
         Database aux = new Database();
         for (Producto p: listaProductosVenta) {
-            database = new Database();
-            aux = new Database();
+            //database = new Database();
+            //aux = new Database();
             int pId = aux.prodId(p.getNombre());
             int vId = aux.maxVtaId();
             int pStock = p.getExistencia() - p.getCantidad();

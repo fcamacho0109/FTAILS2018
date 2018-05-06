@@ -2,8 +2,11 @@ package module.database;
 /**
  *
  * */
+import module.compras.Compra;
+import module.compras.CompraDetalle;
 import module.productos.Producto;
 import module.ventas.Venta;
+import module.ventas.VentaDetalle;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -60,7 +63,8 @@ public class Database extends Thread {
         return productList;
     }
 
-    public ArrayList<Venta> listaVenta() throws SQLException {
+    public ArrayList<Venta> listaVenta()
+            throws SQLException {
         ArrayList<Venta> ventas = new ArrayList<>();
         Venta venta;
         query = "SELECT * FROM VENTAS";
@@ -79,6 +83,73 @@ public class Database extends Thread {
         }
 
         return ventas;
+    }
+
+    public ArrayList<Compra> listaCompra()
+            throws SQLException {
+        ArrayList<Compra> compras = new ArrayList<>();
+        Compra compra;
+        query = "SELECT * FROM COMPRAS";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+
+        while (result.next()) {
+            compra = new Compra();
+            compra.setPrecio(result.getFloat("precio"));
+            compra.setFecha(result.getDate("fecha"));
+            compra.setDescripcion(result.getString("descripcion"));
+
+            compras.add(compra);
+        }
+
+        return compras;
+    }
+
+    public ArrayList<VentaDetalle> listaVentaDetalle()
+            throws SQLException {
+        ArrayList<VentaDetalle> detallesList = new ArrayList<>();
+        VentaDetalle ventaDetalle;
+
+        query = "SELECT p.nombre,pv.idventa,pv.precio,pv.descripcion FROM PRODUCTO_VENTA pv" +
+                " JOIN PRODUCTOS p" +
+                " ON p.idproducto = pv.idproducto";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+
+        while (result.next()) {
+            ventaDetalle = new VentaDetalle();
+            ventaDetalle.setProducto(result.getString(1));
+            ventaDetalle.setVenta(result.getInt(2));
+            ventaDetalle.setPrecio(result.getFloat(3));
+            ventaDetalle.setDescripcion(result.getString(4));
+
+            detallesList.add(ventaDetalle);
+        }
+
+        return detallesList;
+    }
+    public ArrayList<CompraDetalle> listaCompraDetalle()
+            throws SQLException {
+        ArrayList<CompraDetalle> detallesList = new ArrayList<>();
+        CompraDetalle compraDetalle;
+
+        query = "SELECT p.nombre,pv.idcompra,pv.precio,pv.descripcion FROM PRODUCTO_COMPRA pv" +
+                " JOIN PRODUCTOS p" +
+                " ON p.idproducto = pv.idproducto";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+
+        while (result.next()) {
+            compraDetalle = new CompraDetalle();
+            compraDetalle.setProducto(result.getString(1));
+            compraDetalle.setCompra(result.getInt(2));
+            compraDetalle.setPrecio(result.getFloat(3));
+            compraDetalle.setDescripcion(result.getString(4));
+
+            detallesList.add(compraDetalle);
+        }
+
+        return detallesList;
     }
 
     /**
@@ -104,7 +175,24 @@ public class Database extends Thread {
 
         //conObj.close();
     }
+    public void registrarCompra(int mCpraId,float total, Date fecha, String descripcion)
+            throws SQLException {
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDate = dateFormat.format(fecha);
+
+        //String subquery = "SELECT MAX(idventa)+1 FROM VENTAS";
+        query = "INSERT INTO COMPRAS (idcompra,precio,fecha,descripcion) " +
+                "VALUES ("+mCpraId+",?,?,?)";
+        ps = conObj.prepareStatement(query);
+
+        ps.setFloat(1,total);
+        ps.setString(2, currentDate);
+        ps.setString(3,descripcion);
+        ps.execute();
+
+        //conObj.close();
+    }
     public String prodName (int idProd)
             throws SQLException {
         String pName = "";
@@ -132,7 +220,17 @@ public class Database extends Thread {
         //conObj.close();
         return pId;
     }
-
+    public int maxCpraId ()
+            throws SQLException {
+        int vMaxId = -1;
+        query = "SELECT MAX(idcompra) FROM COMPRAS";
+        result = stObj.executeQuery(query);
+        if (result.next()) {
+            vMaxId = result.getInt(1);
+        }
+        //conObj.close();
+        return vMaxId;
+    }
     public int maxVtaId ()
             throws SQLException {
         int vMaxId = -1;
@@ -157,6 +255,16 @@ public class Database extends Thread {
         //conObj.close();
         return vMaxId;
     }
+    public int maxPrCpraId ()
+            throws SQLException {
+        int vMaxId = -1;
+        query = "SELECT MAX(idproducto_compra) FROM PRODUCTO_COMPRA";
+        result = stObj.executeQuery(query);
+        if (result.next()) {
+            vMaxId = result.getInt(1);
+        }
+        return vMaxId;
+    }
     public void registrarProdVta(int idProd,int idVta, float precio,String descripcion)
             throws SQLException {
         int maxId = maxPrVtaId ()+1;
@@ -172,6 +280,22 @@ public class Database extends Thread {
 
         ps.execute();
        // conObj.close();
+    }
+    public void registrarProdCpra(int idProd,int idCpra, float precio,String descripcion)
+            throws SQLException {
+        int maxId = maxPrCpraId ()+1;
+        query = "INSERT INTO PRODUCTO_COMPRA(idproducto_compra,idproducto,idcompra,precio,descripcion) " +
+                "VALUES("+maxId+",?,?,?,?)";
+
+        ps = conObj.prepareStatement(query);
+
+        ps.setInt(1,idProd);
+        ps.setInt(2,idCpra);
+        ps.setFloat(3,precio);
+        ps.setString(4,descripcion);
+
+        ps.execute();
+        // conObj.close();
     }
     /**
      * verifica la existencia del producto.

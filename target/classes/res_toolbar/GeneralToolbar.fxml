@@ -103,7 +103,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_stats_venta" contentDisplay="TOP" layoutX="208.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Stats">
+                        <Button fx:id="boton_stats_venta" contentDisplay="TOP" layoutX="208.0" layoutY="10.0" mnemonicParsing="false" onAction="#detalleVenta" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Stats">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -113,7 +113,7 @@
                            </graphic>
                         </Button>
                         <Line endX="100.0" layoutX="258.0" layoutY="58.0" rotate="90.0" startX="10.0" />
-                        <Button fx:id="boton_nueva_compra" contentDisplay="TOP" layoutX="325.0" layoutY="10.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="102.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Compra">
+                        <Button fx:id="boton_nueva_compra" contentDisplay="TOP" layoutX="325.0" layoutY="10.0" mnemonicParsing="false" onAction="#nuevaCompra" prefHeight="95.0" prefWidth="102.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Compra">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -122,7 +122,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_lista_compra" contentDisplay="TOP" layoutX="435.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Lista">
+                        <Button fx:id="boton_lista_compra" contentDisplay="TOP" layoutX="435.0" layoutY="10.0" mnemonicParsing="false" onAction="#listaCompra" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Lista">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -131,7 +131,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_stats_compra" contentDisplay="TOP" layoutX="537.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Stats">
+                        <Button fx:id="boton_stats_compra" contentDisplay="TOP" layoutX="537.0" layoutY="10.0" mnemonicParsing="false" onAction="#detalleCompra" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Stats">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

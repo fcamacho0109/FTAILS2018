@@ -129,4 +129,40 @@ public class ControllerToolBar {
         AnchorPane temp = (AnchorPane) fxmlLoader.load();
         anchorpane_workspace.getChildren().setAll(temp);
     }
+    @FXML
+    public void detalleVenta() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_VENTA = "/res_ventas/VentaDetalle.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_VENTA));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+    @FXML
+    public void nuevaCompra() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_VENTA = "/res_compras/CompraMenu.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_VENTA));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+    @FXML
+    public void listaCompra() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_VENTA = "/res_compras/CompraLista.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_VENTA));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+    @FXML
+    public void detalleCompra() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_VENTA = "/res_compras/CompraDetalle.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_VENTA));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
 }
