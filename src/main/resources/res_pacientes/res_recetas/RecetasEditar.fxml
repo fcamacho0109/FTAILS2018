@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.recetas.ControllerEditarRecetas">
+   <children>
+      <ComboBox fx:id="comboBox_Medico" layoutX="48.0" layoutY="34.0" prefWidth="150.0" promptText="Medico" />
+      <TextField fx:id="text_medicamento" layoutX="234.0" layoutY="34.0" promptText="Medicamento" />
+      <TextField fx:id="text_cantidad" layoutX="234.0" layoutY="98.0" promptText="Cantidad" />
+      <Button fx:id="save_button" layoutX="300.0" layoutY="350.0" mnemonicParsing="false" onAction="#editarRecetas" text="Save" />
+      <Button fx:id="loadData_button" layoutX="457.0" layoutY="34.0" mnemonicParsing="false" onAction="#printListaDatosRecetas" text="Load Data" />
+      <TextArea fx:id="text_descripcion" layoutX="209.0" layoutY="137.0" prefHeight="200.0" prefWidth="200.0" promptText="Descripción receta" />
+   </children>
+</AnchorPane>

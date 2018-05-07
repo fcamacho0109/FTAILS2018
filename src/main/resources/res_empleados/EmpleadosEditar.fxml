@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="co" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.empleados.ControllerEditarEmpleados">
+   <children>
+      <ComboBox fx:id="comboBox_usuario" layoutX="45.0" layoutY="50.0" prefWidth="150.0" promptText="Usuarios" />
+      <TextField fx:id="text_telefono" layoutX="215.0" layoutY="50.0" promptText="Telefono" />
+      <TextField fx:id="text_domicilio" layoutX="215.0" layoutY="107.0" promptText="Domicilio" />
+      <Button fx:id="save_button" layoutX="264.0" layoutY="159.0" mnemonicParsing="false" onAction="#editarUsuarios" text="Save" />
+      <Button fx:id="loadData_button" layoutX="398.0" layoutY="50.0" mnemonicParsing="false" onAction="#printListDatosUsuarios" text="Load Data" />
+   </children>
+</AnchorPane>
