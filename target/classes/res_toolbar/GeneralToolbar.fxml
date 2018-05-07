@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="643.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.toolbar.ControllerToolBar">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="643.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.toolbar.ControllerToolBar">
    <children>
       <TabPane fx:id="principal_tab_pane" prefHeight="148.0" prefWidth="759.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -51,7 +51,7 @@
                <content>
                   <AnchorPane fx:id="anchorpane_pacientes" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css">
                      <children>
-                        <Button fx:id="boton_nuevo_paciente" contentDisplay="TOP" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Nuevo">
+                        <Button fx:id="boton_nuevo_paciente" contentDisplay="TOP" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickInsertar_Pacientes" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Nuevo">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -60,7 +60,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_editar_paciente" contentDisplay="TOP" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Editar">
+                        <Button fx:id="boton_editar_paciente" contentDisplay="TOP" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickEditar" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Editar">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -69,7 +69,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_lista_paciente" contentDisplay="TOP" layoutX="295.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Lista">
+                        <Button fx:id="boton_lista_paciente" contentDisplay="TOP" layoutX="295.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickPaciente" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Lista">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -200,7 +200,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_editar_receta" contentDisplay="TOP" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Editar">
+                        <Button fx:id="boton_editar_receta" contentDisplay="TOP" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickEditar_Recetas" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Editar">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -209,7 +209,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_lista_receta" contentDisplay="TOP" layoutX="291.0" layoutY="10.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="101.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Recetas">
+                        <Button fx:id="boton_lista_receta" contentDisplay="TOP" layoutX="291.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickRecetas" prefHeight="95.0" prefWidth="101.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Recetas">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -225,7 +225,7 @@
                <content>
                   <AnchorPane fx:id="anchorpane_usuarios" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css">
                      <children>
-                        <Button fx:id="boton_nuevo_usuario" contentDisplay="TOP" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Nuevo">
+                        <Button fx:id="boton_nuevo_usuario" contentDisplay="TOP" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickInsertar_Users" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Nuevo">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -234,7 +234,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_editar_usuario" contentDisplay="TOP" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Editar">
+                        <Button fx:id="boton_editar_usuario" contentDisplay="TOP" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickEditar_Usuarios" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Editar">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -243,7 +243,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_lista_usuario" contentDisplay="TOP" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="114.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Usuarios">
+                        <Button fx:id="onClickUsuario" contentDisplay="TOP" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickUsuario" prefHeight="95.0" prefWidth="114.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Usuarios">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

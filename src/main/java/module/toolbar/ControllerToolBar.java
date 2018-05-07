@@ -139,4 +139,90 @@ public class ControllerToolBar {
         AnchorPane temp = (AnchorPane) fxmlLoader.load();
         anchorpane_workspace.getChildren().setAll(temp);
     }
+
+    @FXML
+    public void onClickPaciente() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_PACIENTES = "/res_pacientes/PacientesListado.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_PACIENTES));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+
+    @FXML
+    public void onClickRecetas() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_RECETAS = "/res_recetas/RecetasListado.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_RECETAS));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+
+    @FXML
+    public void onClickEditar() throws Exception {
+        // carga la vista de ver cita
+        System.out.println("Hola");
+        final String RUTA_PACIENTES_EDITAR = "/res_pacientes/PacientesEditar.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_PACIENTES_EDITAR));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+
+    @FXML
+    public void onClickEditar_Usuarios() throws Exception {
+        // carga la vista de ver cita
+        System.out.println("Hola");
+        final String RUTA_EMPLEADOS_EDITAR = "/res_empleados/EmpleadosEditar.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_EMPLEADOS_EDITAR));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+
+    @FXML
+    public void onClickEditar_Recetas() throws Exception {
+        // carga la vista de ver cita
+        System.out.println("Hola");
+        final String RUTA_RECETAS_EDITAR = "/res_recetas/RecetasEditar.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_RECETAS_EDITAR));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+
+    @FXML
+    public void onClickInsertar_Pacientes() throws Exception {
+        // carga la vista de ver cita
+        System.out.println("Hola");
+        final String RUTA_PACIENTES_INSERTAR = "/res_pacientes/PacientesInsertar.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_PACIENTES_INSERTAR));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+
+    @FXML
+    public void onClickInsertar_Users() throws Exception {
+        // carga la vista de ver cita
+        System.out.println("Hola");
+        final String RUTA_EMPLEADOS_INSERTAR = "/res_empleados/EmpleadosInsertar.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_EMPLEADOS_INSERTAR));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+
+    @FXML
+    public void onClickInsertar_Recetas() throws Exception {
+        // carga la vista de ver cita
+        System.out.println("Hola");
+        final String RUTA_RECETAS_INSERTAR = "/res_recetas/RecetasInsertar.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_RECETAS_INSERTAR));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
 }

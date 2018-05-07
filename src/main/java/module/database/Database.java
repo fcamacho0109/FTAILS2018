@@ -3,7 +3,9 @@ package module.database;
  *
  * */
 import module.empleados.Empleado;
+import module.pacientes.Paciente;
 import module.productos.Producto;
+import module.recetas.Receta;
 import module.ventas.Venta;
 
 import java.sql.*;
@@ -274,4 +276,363 @@ public class Database extends Thread {
         return empleadoArrayList;
     }
 
+    public ArrayList<Paciente> listaPacientes() throws SQLException {
+        ArrayList<Paciente> pacienteArrayList = new ArrayList<>();
+        Paciente pacientes;
+        query = "SELECT * FROM PACIENTES";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+
+        while (result.next()) {
+            pacientes = new Paciente();
+            pacientes.setNombre(result.getString("nombre"));
+            pacientes.setMascota(result.getString("mascota"));
+            pacientes.setDomicilio(result.getString("domicilio"));
+
+
+
+            pacienteArrayList.add(pacientes);
+        }
+
+        return pacienteArrayList;
+    }
+
+    public ArrayList<Receta> listaRecetas() throws SQLException {
+        ArrayList<Receta> recetaArrayList = new ArrayList<>();
+        Receta recetas;
+        query = "SELECT MEDICOS.nombre AS medico,PACIENTES.nombre AS paciente,PRODUCTOS.nombre,cantidad,descripcion_med,fecha_receta\n" +
+                "FROM RECETAS\n" +
+                "INNER JOIN MEDICOS\n" +
+                "ON RECETAS.idmedico = MEDICOS.idmedico \n" +
+                "INNER JOIN PACIENTES\n" +
+                "ON RECETAS.idpaciente = PACIENTES.idpaciente \n" +
+                "INNER JOIN PRODUCTOS\n" +
+                "ON RECETAS.idproducto = PRODUCTOS.idproducto  ";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+
+        while (result.next()) {
+            recetas = new Receta();
+            recetas.setNombreMedico(result.getString(1));
+            recetas.setNombrePaciente(result.getString(2));
+            recetas.setMedicamento(result.getString(3));
+            recetas.setCantidad(result.getString(4));
+            recetas.setDescripcion(result.getString(5));
+            recetas.setFecha(result.getString(6));
+
+
+
+            recetaArrayList.add(recetas);
+        }
+
+        return recetaArrayList;
+    }
+
+
+    public ArrayList<String> pacientes() throws SQLException {
+        //run();
+       ArrayList<String> pacientesList = new ArrayList<>();
+        query = "SELECT * FROM PACIENTES";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            pacientesList.add(result.getString("nombre"));
+        }
+
+        conObj.close();
+        return pacientesList;
+    }
+
+    public ArrayList<String> pacientesDatos(String nombre) throws SQLException {
+        //run();
+        ArrayList<String> pacientesList = new ArrayList<>();
+        query = "SELECT * FROM PACIENTES WHERE nombre = '" + nombre + "'";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            pacientesList.add(result.getString("nombre"));
+            pacientesList.add(result.getString("mascota"));
+            pacientesList.add(result.getString("domicilio"));
+        }
+
+        conObj.close();
+        return pacientesList;
+    }
+
+
+    public ArrayList<String> usuarios() throws SQLException {
+        //run();
+        ArrayList<String> usuariosList = new ArrayList<>();
+        query = "SELECT * FROM EMPLEADOS";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            usuariosList.add(result.getString("nombre"));
+        }
+
+        conObj.close();
+        return usuariosList;
+    }
+
+    public ArrayList<String> usuariosDatos(String nombre) throws SQLException {
+        //run();
+        ArrayList<String> usuariosList = new ArrayList<>();
+        query = "SELECT * FROM EMPLEADOS WHERE nombre = '" + nombre + "'";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            usuariosList.add(result.getString("nombre"));
+            usuariosList.add(result.getString("telefono"));
+            usuariosList.add(result.getString("domicilio"));
+        }
+
+        conObj.close();
+        return usuariosList;
+    }
+
+    public ArrayList<String> recetas() throws SQLException {
+        //run();
+        ArrayList<String> recetasList = new ArrayList<>();
+        query = "SELECT MEDICOS.nombre AS medico,PACIENTES.nombre AS paciente,PRODUCTOS.nombre,cantidad,descripcion_med,fecha_receta\n" +
+                "FROM RECETAS\n" +
+                "INNER JOIN MEDICOS\n" +
+                "ON RECETAS.idmedico = MEDICOS.idmedico \n" +
+                "INNER JOIN PACIENTES\n" +
+                "ON RECETAS.idpaciente = PACIENTES.idpaciente \n" +
+                "INNER JOIN PRODUCTOS\n" +
+                "ON RECETAS.idproducto = PRODUCTOS.idproducto  ";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            recetasList.add(result.getString("medico"));
+        }
+
+        conObj.close();
+        return recetasList;
+    }
+
+    public ArrayList<String> recetasDatos(String nombre) throws SQLException {
+        //run();
+        ArrayList<String> recetasList = new ArrayList<>();
+        query = "SELECT MEDICOS.nombre AS medico,PACIENTES.nombre AS paciente,PRODUCTOS.nombre,cantidad,descripcion_med,fecha_receta\n" +
+                "FROM RECETAS\n" +
+                "INNER JOIN MEDICOS\n" +
+                "ON RECETAS.idmedico = MEDICOS.idmedico \n" +
+                "INNER JOIN PACIENTES\n" +
+                "ON RECETAS.idpaciente = PACIENTES.idpaciente \n" +
+                "INNER JOIN PRODUCTOS\n" +
+                "ON RECETAS.idproducto = PRODUCTOS.idproducto  " +
+                "WHERE MEDICOS.NOMBRE = '" + nombre + "'";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            recetasList.add(result.getString(3));
+            recetasList.add(result.getString(4));
+            recetasList.add(result.getString(5));
+        }
+
+        conObj.close();
+        return recetasList;
+    }
+
+    public void updateUser(String telefono, String domicilio, String nombre)
+            throws SQLException {
+
+        query = "UPDATE EMPLEADOS\n" +
+                "SET\n" +
+                "telefono = ?,\n" +
+                "domicilio = ?\n" +
+                "WHERE nombre = ?";
+        ps = conObj.prepareStatement(query);
+
+        ps.setString(1,telefono);
+        ps.setString(2,domicilio);
+        ps.setString(3,nombre);
+
+        ps.executeUpdate();
+        conObj.close();
+    }
+
+    public void updatePacientes(String mascota, String domicilio, String nombre)
+            throws SQLException {
+
+        query = "UPDATE PACIENTES\n" +
+                "SET\n" +
+                "mascota = ?,\n" +
+                "domicilio = ?\n" +
+                "WHERE nombre = ?";
+        ps = conObj.prepareStatement(query);
+
+        ps.setString(1,mascota);
+        ps.setString(2,domicilio);
+        ps.setString(3,nombre);
+
+        ps.executeUpdate();
+        conObj.close();
+    }
+
+    public void updateRecetas(String nombreMedicamento, int cantidad,String descripcionReceta,String nombreMedico)
+            throws SQLException {
+
+        int idProducto = getProductobyId(nombreMedicamento);
+        int idNombreMedico = getMedicobyName(nombreMedico);
+
+        query = "UPDATE RECETAS\n" +
+                "SET\n" +
+                "idproducto = ?,\n" +
+                "cantidad = ?,\n" +
+                "descripcion_med = ?\n" +
+                "WHERE idmedico = ?";
+        ps = conObj.prepareStatement(query);
+
+        ps.setInt(1,idProducto);
+        ps.setInt(2,cantidad);
+        ps.setString(3,descripcionReceta);
+        ps.setInt(4,idNombreMedico);
+
+        ps.executeUpdate();
+        conObj.close();
+    }
+
+    public int getMedicobyName(String nombre) throws SQLException {
+        int idMedico = -1;
+
+        query = "SELECT idmedico FROM MEDICOS WHERE nombre = '" + nombre + "'";
+
+        result = stObj.executeQuery(query);
+        if(result.next()){
+            idMedico = result.getInt(1);
+        }
+        return idMedico;
+    }
+
+    public int getPacientebyId(String nombre) throws SQLException {
+        int idPaciente = -1;
+
+        query = "SELECT idpaciente FROM PACIENTES WHERE nombre = '" + nombre + "'";
+
+        result = stObj.executeQuery(query);
+        if(result.next()){
+            idPaciente = result.getInt(1);
+        }
+        return idPaciente;
+    }
+
+    public int getProductobyId(String nombre) throws SQLException {
+        int idProducto = -1;
+
+        query = "SELECT idproducto FROM PRODUCTOS WHERE nombre = '" + nombre + "'";
+
+        result = stObj.executeQuery(query);
+        if(result.next()){
+            idProducto = result.getInt(1);
+        }
+        return idProducto;
+    }
+
+
+    public void insertarPacientes(String nombre,String mascota, String domicilio)
+            throws SQLException {
+
+        int pacientId = getIdPAcienteByNombre();
+        String subquery = "SELECT MAX(idpaciente)+1  FROM PACIENTES";
+        query = "INSERT INTO PACIENTES(nombre,mascota,domicilio,idpaciente) " +
+                "VALUES(?,?,?,?)";
+
+        ps = conObj.prepareStatement(query);
+
+        ps.setString(1,nombre);
+        ps.setString(2,mascota);
+        ps.setString(3,domicilio);
+        ps.setInt(4,pacientId);
+
+
+        ps.execute();
+        conObj.close();
+    }
+
+
+    public int getIdPAcienteByNombre() throws SQLException {
+
+        int pacienteId = -1;
+
+        query ="SELECT MAX(idpaciente)+1 FROM PACIENTES";
+        result = stObj.executeQuery(query);
+        if(result.next()){
+            pacienteId = result.getInt(1);
+        }
+        return pacienteId;
+    }
+
+
+    public void insertarUsuarios(String nombre,String telefono, String domicilio,String rol)
+            throws SQLException {
+
+        int userId = getIdUserMax();
+        query = "INSERT INTO EMPLEADOS(idempleado,nombre,telefono,domicilio,rol) " +
+                "VALUES(?,?,?,?,?)";
+
+        ps = conObj.prepareStatement(query);
+
+        ps.setInt(1,userId);
+        ps.setString(2,nombre);
+        ps.setString(3,telefono);
+        ps.setString(4,domicilio);
+        ps.setString(5,rol);
+
+
+        ps.execute();
+        conObj.close();
+    }
+
+
+    public int getIdUserMax() throws SQLException {
+
+        int userId = -1;
+
+        query ="SELECT MAX(idempleado)+1 FROM EMPLEADOS";
+        result = stObj.executeQuery(query);
+        if(result.next()){
+            userId = result.getInt(1);
+        }
+        return userId;
+    }
+
+    public void insertarRecetas(String nombreMedico,String nombrePaciente, String nombreProducto,String descripcion,int cantidad,Date fecha_receta)
+            throws SQLException {
+
+        int recetaId = getIdRecetaMax();
+        int medicoId = getMedicobyName(nombreMedico);
+        int pacienteId = getPacientebyId(nombrePaciente);
+        int productoId = getProductobyId(nombreProducto);
+
+        query = "INSERT INTO RECETAS(idreceta,idmedico,idpaciente,idproducto,cantidad,descripcion_med,fecha_receta) " +
+                "VALUES(?,?,?,?,?,?,?)";
+
+        ps = conObj.prepareStatement(query);
+
+        ps.setInt(1,recetaId);
+        ps.setInt(2,medicoId);
+        ps.setInt(3,pacienteId);
+        ps.setInt(4,productoId);
+        ps.setInt(5,cantidad);
+        ps.setString(6,descripcion);
+        ps.setDate(7,fecha_receta);
+
+
+        ps.execute();
+        conObj.close();
+    }
+
+    public int getIdRecetaMax() throws SQLException {
+
+        int recetaId = -1;
+
+        query ="SELECT MAX(idreceta)+1 FROM RECETAS";
+        result = stObj.executeQuery(query);
+        if(result.next()){
+            recetaId = result.getInt(1);
+        }
+        return recetaId;
+    }
 }
