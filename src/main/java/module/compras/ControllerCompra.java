@@ -137,7 +137,7 @@ public class ControllerCompra implements Initializable{
     public void printProducts () throws SQLException, ClassNotFoundException {
 
         Database data = new Database(); // crea instancia para conectar al server
-        listaProductos = data.productos();
+        listaProductos = data.cProductos();
         combobox_productos.getItems().addAll(listaProductos);
         System.out.println("Producto seleccionado: "+combobox_productos.getValue());
 

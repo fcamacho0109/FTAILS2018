@@ -157,7 +157,7 @@
                <content>
                   <AnchorPane fx:id="anchorpane_inventario" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css">
                      <children>
-                        <Button fx:id="boton_nuevo_producto" contentDisplay="TOP" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Nuevo">
+                        <Button fx:id="boton_nuevo_producto" contentDisplay="TOP" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertNuevoProducto" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Nuevo">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -175,7 +175,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="boton_lista_producto" contentDisplay="TOP" layoutX="295.0" layoutY="10.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Lista">
+                        <Button fx:id="boton_lista_producto" contentDisplay="TOP" layoutX="295.0" layoutY="10.0" mnemonicParsing="false" onAction="#listaProductos" prefHeight="75.0" prefWidth="93.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Lista">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

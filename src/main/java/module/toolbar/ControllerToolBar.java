@@ -165,6 +165,15 @@ public class ControllerToolBar {
         AnchorPane temp = (AnchorPane) fxmlLoader.load();
         anchorpane_workspace.getChildren().setAll(temp);
     }
+    @FXML
+    public void listaProductos() throws Exception {
+        // carga la vista de ver cita
+        final String RUTALISTA = "/res_productos/ProductoListado.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTALISTA));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
     //*************************************//
     @FXML
     public void onClickUsuario() throws Exception {
@@ -256,6 +265,15 @@ public class ControllerToolBar {
         // carga la vista de ver cita
         System.out.println("Hola");
         final String RUTA_RECETAS_INSERTAR = "/res_recetas/RecetasInsertar.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(RUTA_RECETAS_INSERTAR));
+        AnchorPane temp = (AnchorPane) fxmlLoader.load();
+        anchorpane_workspace.getChildren().setAll(temp);
+    }
+    @FXML
+    public void insertNuevoProducto() throws Exception {
+        // carga la vista de ver cita
+        final String RUTA_RECETAS_INSERTAR = "/res_productos/ProductoNuevo.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(RUTA_RECETAS_INSERTAR));
         AnchorPane temp = (AnchorPane) fxmlLoader.load();

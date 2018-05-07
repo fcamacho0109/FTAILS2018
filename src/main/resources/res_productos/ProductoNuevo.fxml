@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="476.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.productos.ControllerNuevoProd">
+   <children>
+      <TextField fx:id="textfield_prodNombre" layoutX="306.0" layoutY="36.0" promptText="Nombre" />
+      <TextField fx:id="textfield_prodDescripcion" layoutX="306.0" layoutY="124.0" promptText="Descripcion" />
+      <ComboBox fx:id="combobox_prodTipo" layoutX="306.0" layoutY="80.0" prefHeight="26.0" prefWidth="171.0" promptText="Tipo" />
+      <TextField fx:id="textfield_prodPrecio" layoutX="306.0" layoutY="168.0" promptText="Precio" />
+      <Button fx:id="button_agregar" layoutX="360.0" layoutY="212.0" mnemonicParsing="false" onAction="#addProduct" text="Agregar" />
+   </children>
+</AnchorPane>

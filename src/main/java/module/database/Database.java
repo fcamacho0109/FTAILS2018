@@ -66,6 +66,41 @@ public class Database extends Thread {
         return productList;
     }
 
+    public ArrayList<String> cProductos() throws SQLException {
+        //run();
+        productList = new ArrayList<>();
+        query = "SELECT * FROM PRODUCTOS";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            productList.add(result.getString("nombre"));
+        }
+
+        conObj.close();
+        return productList;
+    }
+
+    public ArrayList<Producto> productosListado() throws SQLException {
+        //run();
+        ArrayList<Producto> listadoProduct = new ArrayList<>();
+        Producto prod;
+        query = "SELECT * FROM PRODUCTOS";
+        stObj = conObj.createStatement();
+        result = stObj.executeQuery(query);
+        while (result.next()) {
+            prod = new Producto();
+            prod.setNombre(result.getString("nombre"));
+            prod.setTipo(result.getInt("tipo"));
+            prod.setDescripcion(result.getString("descripcion"));
+            prod.setPrecio(result.getFloat("precio"));
+            prod.setExistencia(result.getInt("existencia"));
+            listadoProduct.add(prod);
+        }
+
+        conObj.close();
+        return listadoProduct;
+    }
+
     public ArrayList<Venta> listaVenta()
             throws SQLException {
         ArrayList<Venta> ventas = new ArrayList<>();
@@ -178,6 +213,36 @@ public class Database extends Thread {
 
         //conObj.close();
     }
+
+    public void registrarProducto(String tipo, String nombre,String descripcion, float precio)
+            throws SQLException {
+        int mprodId = maxprodId ()+1;
+
+        //String subquery = "SELECT MAX(idventa)+1 FROM VENTAS";
+        query = "INSERT INTO PRODUCTOS (idproducto,nombre,tipo,descripcion,precio) " +
+                "VALUES ("+mprodId+",?,?,?,?)";
+        ps = conObj.prepareStatement(query);
+
+        ps.setString(1,nombre);
+        ps.setString(2,tipo);
+        ps.setString(3,descripcion);
+        ps.setFloat(4,precio);
+        ps.execute();
+        //conObj.close();
+    }
+    public int maxprodId ()
+            throws SQLException {
+        int vMaxId = -1;
+        query = "SELECT MAX(idproducto) FROM PRODUCTOS";
+        result = stObj.executeQuery(query);
+        if (result.next()) {
+            vMaxId = result.getInt(1);
+        }
+
+        return vMaxId;
+    }
+
+
     public void registrarCompra(int mCpraId,float total, Date fecha, String descripcion)
             throws SQLException {
 
