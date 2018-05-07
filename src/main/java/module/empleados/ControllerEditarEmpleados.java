@@ -57,7 +57,7 @@ public class ControllerEditarEmpleados implements Initializable {
             database.updateUser(tel,dom,nom);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("SUCCESS! RODRIGO ME LA PELA");
+            alert.setTitle("SUCCESS!");
             alert.setHeaderText(null);
             alert.setContentText("EDICIÓN EXITOSA, COMO TU");
 

@@ -63,7 +63,7 @@ public class ControllerEditarRecetas implements Initializable {
             database.updateRecetas(prod,cantidad,desc,nombreMedico);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("SUCCESS! RODRIGO ME LA PELA POR TERCERA VEZ");
+            alert.setTitle("SUCCESS!");
             alert.setHeaderText(null);
             alert.setContentText("EDICIÓN EXITOSA, COMO TU");
 

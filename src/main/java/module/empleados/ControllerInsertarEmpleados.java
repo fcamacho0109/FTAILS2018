@@ -41,7 +41,7 @@ public class ControllerInsertarEmpleados {
         if(!(nombre.equals("")) && !(telefono.equals("")) && !(domicilio.equals("")) && !(rol.equals(""))){
             database.insertarUsuarios(nombre,telefono,domicilio,rol);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("SUCCESS!!! RODRIGO ME LA PELA POR QUINTA OCASIÓN");
+            alert.setTitle("SUCCESS!!! ");
             alert.setHeaderText(null);
             alert.setContentText("INSERCIÓN EXITOSA, COMO TU");
 

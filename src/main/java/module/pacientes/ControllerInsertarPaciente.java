@@ -37,7 +37,7 @@ public class ControllerInsertarPaciente{
       if(!(nombre.equals("")) && !(mascota.equals("")) && !(domicilio.equals(""))){
           database.insertarPacientes(nombre,mascota,domicilio);
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
-          alert.setTitle("SUCCESS!!! RODRIGO ME LA PELA POR CUARTA OCASIÓN");
+          alert.setTitle("SUCCESS!!!");
           alert.setHeaderText(null);
           alert.setContentText("INSERCIÓN EXITOSA, COMO TU");
 

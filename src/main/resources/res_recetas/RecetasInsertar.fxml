@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="res_recetas.RecetasInsertar">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="module.recetas.ControllerInsertarRecetas">
    <children>
-      <ComboBox fx:id="comboBox_Medico" layoutX="37.0" layoutY="38.0" prefWidth="150.0" promptText="Medico" />
-      <ComboBox fx:id="comboBox_Paciente" layoutX="225.0" layoutY="38.0" prefWidth="150.0" promptText="Paciente" />
-      <ComboBox fx:id="comboBox_Medicamento" layoutX="399.0" layoutY="38.0" prefWidth="150.0" promptText="Medicamento" />
       <TextField fx:id="text_cantidad" layoutX="400.0" layoutY="84.0" promptText="Cantidad" />
       <TextArea fx:id="textArea_descripcion" layoutX="187.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" promptText="Descripcion" />
-      <Button fx:id="add_button" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="add_button" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#insertarReceta" text="Add" />
+      <TextField fx:id="text_medic" layoutX="26.0" layoutY="28.0" promptText="Medico" />
+      <TextField fx:id="text_pacient" layoutX="200.0" layoutY="28.0" promptText="Paciente" />
+      <TextField fx:id="text_medicamento" layoutX="400.0" layoutY="28.0" promptText="Medicamento" />
    </children>
 </AnchorPane>

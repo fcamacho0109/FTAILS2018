@@ -243,7 +243,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="onClickUsuario" contentDisplay="TOP" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickUsuario" prefHeight="95.0" prefWidth="114.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Usuarios">
+                        <Button fx:id="boton_lista_usuario" contentDisplay="TOP" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickUsuario" prefHeight="95.0" prefWidth="114.0" styleClass="menu-bar" stylesheets="@css/toolbarStyle.css" text="Usuarios">
                            <graphic>
                               <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

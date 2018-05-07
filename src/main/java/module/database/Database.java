@@ -2,6 +2,7 @@ package module.database;
 /**
  *
  * */
+
 import module.empleados.Empleado;
 import module.pacientes.Paciente;
 import module.productos.Producto;
@@ -9,6 +10,7 @@ import module.recetas.Receta;
 import module.ventas.Venta;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -598,13 +600,16 @@ public class Database extends Thread {
         return userId;
     }
 
-    public void insertarRecetas(String nombreMedico,String nombrePaciente, String nombreProducto,String descripcion,int cantidad,Date fecha_receta)
+    public void insertarRecetas(String nombreMedico, String nombrePaciente, String nombreProducto, String descripcion, int cantidad, java.util.Date fecha_receta)
             throws SQLException {
 
         int recetaId = getIdRecetaMax();
         int medicoId = getMedicobyName(nombreMedico);
         int pacienteId = getPacientebyId(nombrePaciente);
         int productoId = getProductobyId(nombreProducto);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDate = dateFormat.format(fecha_receta);
 
         query = "INSERT INTO RECETAS(idreceta,idmedico,idpaciente,idproducto,cantidad,descripcion_med,fecha_receta) " +
                 "VALUES(?,?,?,?,?,?,?)";
@@ -617,7 +622,7 @@ public class Database extends Thread {
         ps.setInt(4,productoId);
         ps.setInt(5,cantidad);
         ps.setString(6,descripcion);
-        ps.setDate(7,fecha_receta);
+        ps.setString(7,currentDate);
 
 
         ps.execute();
